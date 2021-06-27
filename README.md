@@ -7,3 +7,4 @@
 - TypeORM: https://docs.nestjs.com/techniques/database
 - NestJS Configuration: https://docs.nestjs.com/techniques/configuration
 - Cross Env: https://www.npmjs.com/package/cross-env
+- Schema Validation: https://docs.nestjs.com/techniques/configuration#schema-validation
