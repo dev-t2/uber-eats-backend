@@ -4,4 +4,4 @@
 - GraphQL: https://docs.nestjs.com/graphql/quick-start
 - Class Validator: https://docs.nestjs.com/pipes#class-validator
 - PostgreSQL: https://www.postgresql.org/
-- TypeORM: https://typeorm.io/#/
+- TypeORM: https://docs.nestjs.com/techniques/database
