@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 
-import { PrismaModule } from './prisma';
+import { PrismaModule } from './prisma/prisma.module';
+import { HttpLoggerMiddleware } from './common/middlewares';
 
 @Module({
   imports: [
@@ -19,4 +20,8 @@ import { PrismaModule } from './prisma';
     PrismaModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(HttpLoggerMiddleware).forRoutes('*');
+  }
+}
