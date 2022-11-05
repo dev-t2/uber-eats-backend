@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import bcrypt from 'bcrypt';
 
 import { UsersRepository } from './users.repository';
 import { CreateUserDto } from './users.dto';
@@ -14,6 +15,8 @@ export class UsersService {
       throw new BadRequestException();
     }
 
-    return await this.usersRepository.createUser(email, password, role);
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await this.usersRepository.createUser(email, hashedPassword, role);
   }
 }

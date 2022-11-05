@@ -24,7 +24,7 @@ export class UsersRepository {
     try {
       return await this.prismaService.user.create({
         data: { email, password, role },
-        select: { id: true, email: true },
+        select: { id: true },
       });
     } catch (e) {
       console.error(e);
