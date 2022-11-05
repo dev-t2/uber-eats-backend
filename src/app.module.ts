@@ -2,8 +2,9 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 
-import { PrismaModule } from './prisma/prisma.module';
 import { UsersModule } from './users/users.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 import { HttpLoggerMiddleware } from './common/middlewares';
 
 @Module({
@@ -15,11 +16,13 @@ import { HttpLoggerMiddleware } from './common/middlewares';
           .default('development'),
         PORT: Joi.number().default(3000),
         DATABASE_URL: Joi.string().required(),
+        JWT_SECRET_KEY: Joi.string().required(),
       }),
       validationOptions: { abortEarly: true },
     }),
-    PrismaModule,
     UsersModule,
+    PrismaModule,
+    AuthModule,
   ],
 })
 export class AppModule implements NestModule {
