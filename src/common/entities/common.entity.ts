@@ -13,8 +13,4 @@ export class Common {
   @ApiProperty({ description: '업데이트된 날짜' })
   @IsDate()
   updatedAt: Date;
-
-  @ApiProperty({ description: '삭제된 날짜' })
-  @IsDate()
-  deletedAt: Date | null;
 }
