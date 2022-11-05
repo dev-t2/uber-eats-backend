@@ -8,6 +8,7 @@
   - [Encryption and Hashing](https://docs.nestjs.com/security/encryption-and-hashing)
   - [Authentication](https://docs.nestjs.com/security/authentication)
   - [Circular dependency](https://docs.nestjs.com/fundamentals/circular-dependency)
+- [PostgreSQL](https://www.postgresql.org)
 - [Prisma](https://www.prisma.io)
   - [Configuring logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging)
 - [Express Basic Authentication](https://github.com/LionC/express-basic-auth)
