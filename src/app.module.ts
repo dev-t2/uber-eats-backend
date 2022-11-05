@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 
 import { PrismaModule } from './prisma/prisma.module';
+import { UsersModule } from './users/users.module';
 import { HttpLoggerMiddleware } from './common/middlewares';
 
 @Module({
@@ -18,6 +19,7 @@ import { HttpLoggerMiddleware } from './common/middlewares';
       validationOptions: { abortEarly: true },
     }),
     PrismaModule,
+    UsersModule,
   ],
 })
 export class AppModule implements NestModule {
