@@ -5,7 +5,10 @@ import { UsersModule } from 'src/users/users.module';
 import { AuthService } from './auth.service';
 
 @Module({
-  imports: [JwtModule, forwardRef(() => UsersModule)],
+  imports: [
+    JwtModule.register({ secret: process.env.JWT_SECRET_KEY }),
+    forwardRef(() => UsersModule),
+  ],
   providers: [AuthService],
   exports: [AuthService],
 })

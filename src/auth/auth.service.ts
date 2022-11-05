@@ -26,10 +26,7 @@ export class AuthService {
     }
 
     return {
-      accessToken: this.jwtService.sign(
-        { sub: 'access', id: user.id },
-        { secret: process.env.JWT_SECRET_KEY },
-      ),
+      accessToken: this.jwtService.sign({ sub: 'access', id: user.id }),
     };
   }
 }
