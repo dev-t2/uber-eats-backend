@@ -8,7 +8,11 @@ import { UsersRepository } from './users.repository';
 import { UsersService } from './users.service';
 
 @Module({
-  imports: [CustomModule.forRoot(), PrismaModule, forwardRef(() => AuthModule)],
+  imports: [
+    CustomModule.forRoot({ description: 'Custom Module and Service POC' }),
+    PrismaModule,
+    forwardRef(() => AuthModule),
+  ],
   controllers: [UsersController],
   providers: [UsersService, UsersRepository],
   exports: [UsersRepository],

@@ -15,7 +15,7 @@ export class UsersController {
     private readonly usersService: UsersService,
   ) {}
 
-  @ApiOperation({ summary: 'Custom Module POC API' })
+  @ApiOperation({ summary: 'Custom Module and Service POC API' })
   @Get()
   customModule() {
     return this.customService.log();

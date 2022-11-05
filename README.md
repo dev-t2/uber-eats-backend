@@ -9,6 +9,7 @@
   - [Authentication](https://docs.nestjs.com/security/authentication)
   - [Circular dependency](https://docs.nestjs.com/fundamentals/circular-dependency)
   - [Modules](https://docs.nestjs.com/modules)
+  - [Dynamic modules](https://docs.nestjs.com/fundamentals/dynamic-modules)
 - [PostgreSQL](https://www.postgresql.org)
 - [Prisma](https://www.prisma.io)
   - [Configuring logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging)

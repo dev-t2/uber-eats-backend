@@ -1,10 +1,13 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+
+import { CONFIG_OPTIONS } from './custom.constant';
+import { IOptions } from './custom.interface';
 
 @Injectable()
 export class CustomService {
-  private readonly logger = new Logger(CustomService.name);
+  constructor(@Inject(CONFIG_OPTIONS) private readonly options: IOptions) {}
 
   log() {
-    this.logger.log('Custom Module and Service POC');
+    return { forRoot: this.options.description };
   }
 }
