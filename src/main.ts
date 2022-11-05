@@ -16,8 +16,8 @@ async function bootstrap() {
   app.use(
     ['/docs', '/docs-json'],
     expressBasicAuth({
-      challenge: true,
       users: { [process.env.ADMIN_NAME]: process.env.ADMIN_PASSWORD },
+      challenge: true,
     }),
   );
 
