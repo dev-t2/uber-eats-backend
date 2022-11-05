@@ -10,6 +10,6 @@
   - [Circular dependency](https://docs.nestjs.com/fundamentals/circular-dependency)
 - [Prisma](https://www.prisma.io)
   - [Configuring logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging)
-- [Express Basic Auth](https://github.com/LionC/express-basic-auth)
+- [Express Basic Authentication](https://github.com/LionC/express-basic-auth)
 - [Random Key Generator](https://randomkeygen.com)
 - [JSON Web Token](https://jwt.io)
