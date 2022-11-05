@@ -22,6 +22,7 @@ import { HttpLoggerMiddleware } from './common/middlewares';
       }),
       validationOptions: { abortEarly: true },
     }),
+
     UsersModule,
     PrismaModule,
     AuthModule,
