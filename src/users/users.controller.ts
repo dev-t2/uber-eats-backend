@@ -11,7 +11,7 @@ export class UsersController {
 
   @ApiOperation({ summary: '회원가입' })
   @Post()
-  createUser(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+  async createUser(@Body() createUserDto: CreateUserDto) {
+    return await this.usersService.createUser(createUserDto);
   }
 }

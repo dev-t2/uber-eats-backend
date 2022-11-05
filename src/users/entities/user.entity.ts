@@ -15,7 +15,7 @@ export class User extends Common implements UserModel {
   })
   password: string;
 
-  @ApiProperty({ enum: Role, default: 'user', description: '사용자 권한' })
+  @ApiProperty({ enum: Role, default: Role.USER, description: '사용자 권한' })
   @IsEnum(Role)
   role: Role;
 }

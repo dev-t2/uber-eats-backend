@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { UsersRepository } from './users.repository';
 import { CreateUserDto } from './users.dto';
@@ -7,9 +7,13 @@ import { CreateUserDto } from './users.dto';
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  createUser(createUserDto: CreateUserDto) {
-    console.log(createUserDto);
+  async createUser({ email, password, role }: CreateUserDto) {
+    const isEmail = await this.usersRepository.findUserByEmail(email);
 
-    return 'This action adds a new user';
+    if (isEmail) {
+      throw new BadRequestException();
+    }
+
+    return await this.usersRepository.createUser(email, password, role);
   }
 }
