@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import expressBasicAuth from 'express-basic-auth';
 
 import { AppModule } from './app.module';
 import { TransformInterceptor } from './common/interceptors';
@@ -11,6 +12,14 @@ async function bootstrap() {
 
   app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
+
+  app.use(
+    ['/docs', '/docs-json'],
+    expressBasicAuth({
+      challenge: true,
+      users: { [process.env.ADMIN_NAME]: process.env.ADMIN_PASSWORD },
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Uber Eats API')

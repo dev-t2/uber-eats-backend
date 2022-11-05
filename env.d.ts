@@ -5,6 +5,9 @@ declare namespace NodeJS {
 
     DATABASE_URL: string;
 
+    ADMIN_NAME: string;
+    ADMIN_PASSWORD: string;
+
     JWT_SECRET_KEY: string;
   }
 }

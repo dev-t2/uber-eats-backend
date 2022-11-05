@@ -16,6 +16,8 @@ import { HttpLoggerMiddleware } from './common/middlewares';
           .default('development'),
         PORT: Joi.number().default(3000),
         DATABASE_URL: Joi.string().required(),
+        ADMIN_NAME: Joi.string().required(),
+        ADMIN_PASSWORD: Joi.string().required(),
         JWT_SECRET_KEY: Joi.string().required(),
       }),
       validationOptions: { abortEarly: true },
