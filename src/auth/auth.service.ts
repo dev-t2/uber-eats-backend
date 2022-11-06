@@ -12,6 +12,14 @@ export class AuthService {
     private readonly usersRepository: UsersRepository,
   ) {}
 
+  async createCode(email: string) {
+    const isEmail = await this.usersRepository.findUserByEmail(email);
+
+    if (isEmail) {
+      throw new BadRequestException();
+    }
+  }
+
   async login({ email, password }: LoginDto) {
     const user = await this.usersRepository.findUserByEmail(email);
 

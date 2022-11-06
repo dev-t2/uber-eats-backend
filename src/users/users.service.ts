@@ -8,22 +8,12 @@ import { CreateUserDto } from './users.dto';
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async confirmEmail(email: string) {
+  async createUser({ email, password, role }: CreateUserDto) {
     const isEmail = await this.usersRepository.findUserByEmail(email);
 
     if (isEmail) {
       throw new BadRequestException();
     }
-  }
-
-  async createCode(email: string) {
-    await this.confirmEmail(email);
-
-    return;
-  }
-
-  async createUser({ email, password, role }: CreateUserDto) {
-    await this.confirmEmail(email);
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -41,7 +31,11 @@ export class UsersService {
   }
 
   async updateUserEmail(id: number, email: string) {
-    await this.confirmEmail(email);
+    const isEmail = await this.usersRepository.findUserByEmail(email);
+
+    if (isEmail) {
+      throw new BadRequestException();
+    }
 
     await this.usersRepository.updateUserEmail(id, email);
   }

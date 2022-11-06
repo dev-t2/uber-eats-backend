@@ -26,7 +26,7 @@ export class UsersController {
   @ApiOperation({ summary: '이메일 인증 번호 전송' })
   @Post('email')
   async createCode(@Body() { email }: CreateCodeDto) {
-    return await this.usersService.createCode(email);
+    return await this.authService.createCode(email);
   }
 
   @ApiOperation({ summary: '회원가입' })
