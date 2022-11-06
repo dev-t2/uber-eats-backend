@@ -7,6 +7,7 @@ import { User } from 'src/common/decorators';
 import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
 import {
+  CreateCodeDto,
   CreateUserDto,
   LoginDto,
   UpdateUserEmailDto,
@@ -21,6 +22,12 @@ export class UsersController {
     private readonly authService: AuthService,
     private readonly usersService: UsersService,
   ) {}
+
+  @ApiOperation({ summary: '이메일 인증 번호 전송' })
+  @Post('email')
+  async createCode(@Body() { email }: CreateCodeDto) {
+    return await this.usersService.createCode(email);
+  }
 
   @ApiOperation({ summary: '회원가입' })
   @Post()
@@ -37,7 +44,7 @@ export class UsersController {
   @ApiOperation({ summary: '프로필' })
   @ApiBearerAuth('Token')
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('profile')
   async profile(@User() userDto: UserDto) {
     return userDto;
   }
@@ -45,7 +52,7 @@ export class UsersController {
   @ApiOperation({ summary: '유저 프로필' })
   @ApiBearerAuth('Token')
   @UseGuards(JwtAuthGuard)
-  @Get(':id')
+  @Get('profile/:id')
   async findUser(@Param('id', ParsePositiveIntPipe) id: number) {
     return await this.usersService.findUser(id);
   }
