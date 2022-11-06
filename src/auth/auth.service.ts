@@ -1,5 +1,6 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { Cache } from 'cache-manager';
 import bcrypt from 'bcrypt';
 
 import { UsersRepository } from 'src/users/users.repository';
@@ -8,6 +9,7 @@ import { LoginDto } from 'src/users/users.dto';
 @Injectable()
 export class AuthService {
   constructor(
+    @Inject(CACHE_MANAGER) private readonly cache: Cache,
     private readonly jwtService: JwtService,
     private readonly usersRepository: UsersRepository,
   ) {}
