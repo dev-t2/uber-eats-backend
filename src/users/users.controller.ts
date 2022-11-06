@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AuthService } from 'src/auth/auth.service';
@@ -6,6 +6,7 @@ import { UsersService } from './users.service';
 import { JwtAuthGuard } from 'src/auth/jwt';
 import { User } from 'src/common/decorators';
 import { CreateUserDto, LoginDto, UserDto } from './users.dto';
+import { ParsePositiveIntPipe } from 'src/common/pipes';
 
 @ApiTags('Users')
 @Controller('users')
@@ -27,11 +28,19 @@ export class UsersController {
     return await this.authService.login(loginDto);
   }
 
-  @ApiOperation({ summary: '프로필' })
+  @ApiOperation({ summary: '내 프로필' })
   @ApiBearerAuth('Token')
   @UseGuards(JwtAuthGuard)
   @Get()
   async profile(@User() userDto: UserDto) {
     return userDto;
+  }
+
+  @ApiOperation({ summary: '유저 프로필' })
+  @ApiBearerAuth('Token')
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  async findUser(@Param('id', ParsePositiveIntPipe) id: number) {
+    return id;
   }
 }

@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import expressBasicAuth from 'express-basic-auth';
 
@@ -13,6 +14,12 @@ async function bootstrap() {
 
   app.use(HttpLoggerMiddleware);
   app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      disableErrorMessages: process.env.NODE_ENV === 'production',
+    }),
+  );
   app.useGlobalFilters(new HttpExceptionFilter());
 
   app.use(
