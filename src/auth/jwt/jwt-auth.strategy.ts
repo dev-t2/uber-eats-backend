@@ -20,7 +20,7 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate({ sub, id }: IPayload) {
-    if (sub !== 'access') {
+    if (sub !== 'token') {
       throw new UnauthorizedException();
     }
 
