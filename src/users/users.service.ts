@@ -29,4 +29,20 @@ export class UsersService {
 
     return user;
   }
+
+  async updateUserEmail(id: number, email: string) {
+    const isEmail = await this.usersRepository.findUserByEmail(email);
+
+    if (isEmail) {
+      throw new BadRequestException();
+    }
+
+    await this.usersRepository.updateUserEmail(id, email);
+  }
+
+  async updateUserPassword(id: number, password: string) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await this.usersRepository.updateUserPassword(id, hashedPassword);
+  }
 }

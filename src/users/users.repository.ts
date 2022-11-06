@@ -37,7 +37,35 @@ export class UsersRepository {
     try {
       return await this.prismaService.user.findUnique({
         where: { id },
-        select: { email: true },
+        select: { id: true, email: true },
+      });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async updateUserEmail(id: number, email: string) {
+    try {
+      return await this.prismaService.user.update({
+        where: { id },
+        data: { email },
+        select: { id: true },
+      });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async updateUserPassword(id: number, password: string) {
+    try {
+      return await this.prismaService.user.update({
+        where: { id },
+        data: { password },
+        select: { id: true },
       });
     } catch (e) {
       console.error(e);
