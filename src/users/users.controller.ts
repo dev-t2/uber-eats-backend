@@ -7,6 +7,7 @@ import { User } from 'src/common/decorators';
 import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
 import {
+  ConfirmCodeDto,
   CreateCodeDto,
   CreateUserDto,
   LoginDto,
@@ -24,9 +25,15 @@ export class UsersController {
   ) {}
 
   @ApiOperation({ summary: '이메일 인증 번호 전송' })
-  @Post('email')
+  @Post('email/code')
   async createCode(@Body() { email }: CreateCodeDto) {
     return await this.authService.createCode(email);
+  }
+
+  @ApiOperation({ summary: '이메일 인증 번호 확인' })
+  @Post('email/code/confirm')
+  async confirmCode(@Body() { email, code }: ConfirmCodeDto) {
+    return await this.authService.confirmCode(email, code);
   }
 
   @ApiOperation({ summary: '회원가입' })
