@@ -27,6 +27,7 @@ async function bootstrap() {
     .setTitle('Uber Eats API')
     .setDescription('Uber Eats API Documentations')
     .setVersion('1.0')
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'Token')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
