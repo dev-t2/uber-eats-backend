@@ -1,9 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AuthService } from 'src/auth/auth.service';
 import { UsersService } from './users.service';
-import { CreateUserDto, LoginDto } from './users.dto';
+import { JwtAuthGuard } from 'src/auth/jwt';
+import { User } from 'src/common/decorators';
+import { CreateUserDto, LoginDto, UserDto } from './users.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -23,5 +25,13 @@ export class UsersController {
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
     return await this.authService.login(loginDto);
+  }
+
+  @ApiOperation({ summary: '프로필' })
+  @ApiBearerAuth('Token')
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  async profile(@User() userDto: UserDto) {
+    return userDto;
   }
 }
