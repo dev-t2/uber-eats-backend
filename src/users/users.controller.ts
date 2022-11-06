@@ -41,6 +41,6 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findUser(@Param('id', ParsePositiveIntPipe) id: number) {
-    return id;
+    return this.usersService.findUser(id);
   }
 }
