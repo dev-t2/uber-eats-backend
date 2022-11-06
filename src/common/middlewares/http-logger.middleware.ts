@@ -5,8 +5,9 @@ interface IRequest extends Request {
   user?: { id: number };
 }
 
+const logger = new Logger('HTTP');
+
 export function HttpLoggerMiddleware(req: IRequest, res: Response, next: NextFunction) {
-  const logger = new Logger('HTTP');
   const startTime = Date.now();
 
   res.on('finish', () => {
