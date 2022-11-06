@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 
@@ -7,7 +7,6 @@ import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
-import { HttpLoggerMiddleware } from './common/middlewares';
 
 @Module({
   imports: [
@@ -31,8 +30,4 @@ import { HttpLoggerMiddleware } from './common/middlewares';
   ],
   controllers: [AppController],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(HttpLoggerMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}
