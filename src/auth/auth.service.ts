@@ -1,6 +1,7 @@
 import { BadRequestException, CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Cache } from 'cache-manager';
+import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 
 import { UsersRepository } from 'src/users/users.repository';
@@ -20,6 +21,8 @@ export class AuthService {
     if (isEmail) {
       throw new BadRequestException();
     }
+
+    this.cache.set(email, uuidv4());
   }
 
   async login({ email, password }: LoginDto) {

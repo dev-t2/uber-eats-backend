@@ -19,3 +19,4 @@
 - [Express Basic Authentication](https://github.com/LionC/express-basic-auth)
 - [Random Key Generator](https://randomkeygen.com)
 - [JSON Web Token](https://jwt.io)
+- [UUID](https://github.com/uuidjs/uuid)
