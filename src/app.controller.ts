@@ -8,7 +8,7 @@ import { CustomService } from './custom/custom.service';
 export class AppController {
   constructor(private readonly customService: CustomService) {}
 
-  @ApiOperation({ summary: 'Custom Module and Service POC API' })
+  @ApiOperation({ summary: 'Custom Dynamic Module and Service POC API' })
   @Get()
   customModule() {
     return this.customService.log();
