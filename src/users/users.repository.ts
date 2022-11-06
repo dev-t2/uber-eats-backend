@@ -37,7 +37,7 @@ export class UsersRepository {
     try {
       return await this.prismaService.user.findUnique({
         where: { id },
-        select: { id: true, email: true, role: true },
+        select: { email: true },
       });
     } catch (e) {
       console.error(e);
