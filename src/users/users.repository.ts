@@ -32,4 +32,17 @@ export class UsersRepository {
       throw new InternalServerErrorException();
     }
   }
+
+  async findUserById(id: number) {
+    try {
+      return await this.prismaService.user.findUnique({
+        where: { id },
+        select: { id: true },
+      });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
 }
