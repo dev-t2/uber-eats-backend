@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/comm
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AuthService } from 'src/auth/auth.service';
-import { JwtAuthGuard } from 'src/auth/jwt';
+import { JwtAuthGuard } from 'src/auth/guards';
 import { User } from 'src/common/decorators';
 import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
