@@ -11,7 +11,6 @@
   - [Authentication](https://docs.nestjs.com/security/authentication)
   - [Circular dependency](https://docs.nestjs.com/fundamentals/circular-dependency)
   - [Caching](https://docs.nestjs.com/techniques/caching)
-  - [Guards](https://docs.nestjs.com/guards)
 - [PostgreSQL](https://www.postgresql.org)
 - [Prisma](https://www.prisma.io)
   - [Configuring logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging)
