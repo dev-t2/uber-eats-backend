@@ -1,10 +1,4 @@
-import {
-  BadRequestException,
-  CACHE_MANAGER,
-  Inject,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { BadRequestException, CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Cache } from 'cache-manager';
 import { v4 as uuidv4 } from 'uuid';
@@ -31,20 +25,6 @@ export class AuthService {
     const code = uuidv4();
 
     await this.cache.set(email, code);
-  }
-
-  async confirmCode(email: string, code: string) {
-    const cachedCode = await this.cache.get<string>(email);
-
-    if (!cachedCode) {
-      throw new UnauthorizedException();
-    }
-
-    if (code !== cachedCode) {
-      throw new BadRequestException();
-    }
-
-    await this.cache.del(email);
   }
 
   async login({ email, password }: LoginDto) {

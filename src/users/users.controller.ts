@@ -2,12 +2,11 @@ import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/comm
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AuthService } from 'src/auth/auth.service';
-import { JwtAuthGuard } from 'src/auth/guards';
+import { JwtAuthGuard } from 'src/auth/jwt';
 import { User } from 'src/common/decorators';
 import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
 import {
-  ConfirmCodeDto,
   CreateCodeDto,
   CreateUserDto,
   LoginDto,
@@ -24,16 +23,16 @@ export class UsersController {
     private readonly usersService: UsersService,
   ) {}
 
-  @ApiOperation({ summary: '이메일 인증 번호 전송' })
+  @ApiOperation({ summary: '인증 이메일 전송' })
   @Post('email/code')
   async createCode(@Body() { email }: CreateCodeDto) {
     return await this.authService.createCode(email);
   }
 
-  @ApiOperation({ summary: '이메일 인증 번호 확인' })
-  @Post('email/code/confirm')
-  async confirmCode(@Body() { email, code }: ConfirmCodeDto) {
-    return await this.authService.confirmCode(email, code);
+  @ApiOperation({ summary: '인증 이메일 확인' })
+  @Get('email/code')
+  async confirmCode() {
+    return;
   }
 
   @ApiOperation({ summary: '회원가입' })
