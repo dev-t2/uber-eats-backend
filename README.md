@@ -18,4 +18,3 @@
 - [Random Key Generator](https://randomkeygen.com)
 - [JSON Web Token](https://jwt.io)
 - [UUID](https://github.com/uuidjs/uuid)
-- [Mailgun](https://www.mailgun.com)
